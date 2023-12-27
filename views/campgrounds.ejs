@@ -1,0 +1,50 @@
+<%- include('partials/header') %> <%- include('partials/navbar') %>
+
+<section class="all-camps">
+  <h1>All Campgrounds</h1>
+  <div class="campgrounds">
+    <% for(let camp of campgrounds) { %>
+    <a href="/campgrounds/<%= camp._id %>">
+      <div id="camp" class="camp">
+        <% if(camp.url) { %>
+          <img src="<%= camp.url %>" alt="...">
+          <% } else { %>
+            <img
+            src="https://static.vecteezy.com/system/resources/previews/029/140/611/original/camp-logo-camp-outdoor-camping-large-sticker-camping-sticker-camp-sticker-ai-generative-free-png.png"
+            alt="..."
+          />
+            <% } %>
+   
+
+        <div id="desc" class="camp-desc">
+          <h2><%= camp.title %></h2>
+          <h3><%= camp.location %></h3>
+          <div class="more-icon"><i class="fa-solid fa-angle-right"></i></div>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+</section>
+<script>
+ 
+
+ const camps = document.querySelectorAll('#camp');
+
+camps.forEach((camp) => {
+  const desc = camp.querySelector('#desc');
+  desc.style.display = 'none';
+
+  camp.addEventListener('mouseover', () => {
+    desc.classList.add('visible');
+    desc.style.display = 'block';
+  });
+
+  camp.addEventListener('mouseout', () => {
+    desc.classList.remove('visible');
+    desc.style.display = 'none';
+  });
+});
+</script>
+
+<%- include('partials/footer') %>

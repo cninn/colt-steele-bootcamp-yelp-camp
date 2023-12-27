@@ -1,0 +1,5 @@
+
+node_modules/  # node_modules dizini ve içeriği
+*.log         # .log uzantılı dosyalar
+.DS_Store     # macOS'te bulunan gizli DS_Store dosyaları
+build/        # build dizini ve içeriği

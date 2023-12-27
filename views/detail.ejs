@@ -1,0 +1,135 @@
+<%- include('partials/header') %> 
+<%- include('partials/navbar') %>
+
+<section class="all-camps">
+
+  <h1>Camp Detail <a class="back" href="/campgrounds"><i class="fa-solid fa-left-long"></i> All Camps!</a></h1>
+  <div class="detail-camp">
+  
+    <div class="camp">
+      <% if(camp.url) { %>
+      <img src="<%= camp.url %>" alt="..." />
+      <% } else { %>
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/029/140/611/original/camp-logo-camp-outdoor-camping-large-sticker-camping-sticker-camp-sticker-ai-generative-free-png.png"
+        alt="..."
+      />
+
+      <% } %>
+      <p style="color:darkorange; background-color:  rgba(0, 0, 0, 0.7); padding: 5px; font-size: 14px; width: 100%; text-align: center; border-radius: 3px; position: absolute; top:10px;"><%= camp.author.username %> tarafından oluşturuldu</p>
+      <div class="camp-desc">
+        <h2><%= camp.title %></h2>
+        <h3 style="background-color: rgba(0, 0, 0, 0.7);  padding: 5px; margin-top: 5px;" ><%= camp.location %></h3>
+       
+      </div>
+
+    </div>
+
+
+
+ 
+    <div class="descs">
+      <h2>Description</h2>
+    
+      <p class="text-detail"><%= camp.description %></p>
+      <h2 class="price"><%= camp.price %> $ <span style="font-size: 24px; font-weight: normal;">/ <i class="fas fa-moon"></i></span></h2>
+    
+
+      <div class="btnns">
+
+        <% if(currentUser && camp.author.equals(currentUser._id)) { %>
+        <a class="edit-camp" href="/campgrounds/<%= camp._id %>/edit"
+          >Edit</a>
+      
+        <form
+        class=""
+        action="/campgrounds/<%= camp._id %>?_method=DELETE"
+        method="POST"
+      >
+      <button type="submit" class="delete-camp">
+      
+        Delete
+       </button>
+    </form>
+      <% } %>
+
+
+
+   
+   
+
+      
+    </div>
+    
+
+  </div>
+
+  <div class="comments<% if(camp.review.length === 0) {%>
+    not-rev
+  <% } %>
+  
+  ">
+  <div class="comment-header">
+    <h2>Değerlendirmeler</h2>
+    <% if(currentUser) { %>
+    <a class="btnns"  class="edit-camp" id="openModal"><i class="far fa-comment"></i>Gönder</a>
+    <% } %>
+  </div>
+
+  <% if(camp.review.length === 0) { %>
+    <p>Henüz hiç değerlendirme yapılmamış</p>
+    <% } %>
+  <% for(let rev of camp.review) { %>
+
+  <div class="comment">
+    <b><%= rev.author.username %></b>
+    <p class="body"><%= rev.body %></p>
+    
+    <p  class="starability-result" data-rating="<%= rev.rating %>">
+     
+    </p>
+    
+    
+   <% if(currentUser && (camp.author.equals(currentUser._id) || (rev.author && rev.author.equals(currentUser._id)))) { %>
+    
+  
+    <form style="background-color: transparent;" action="/campgrounds/<%= camp._id %>/review/<%= rev._id %>?_method=DELETE" method="POST">  
+      <button style="background-color: transparent; cursor: pointer;"  type="submit"  class="delete-icon"><i class="fa-regular fa-trash-can"></i></button>
+    </form>
+    
+   
+    <% } %>
+  </div>
+  <% } %>
+  <form id="modal-form" style="display: none; gap: 10px;" class="modal" action="/campgrounds/<%= camp._id %>/review" method="POST">
+    <label for="body">Bu yeri beğendiniz mi ?</label>
+    <textarea type="text" name="body" required></textarea>
+    <label for="rating">Puanlayın</label>
+   <fieldset class="starability-basic">
+    <legend></legend>
+    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+    <input type="radio" id="first-rate1" name="rating" value="1" />
+    <label for="first-rate1" title="Terrible">1 star</label>
+    <input type="radio" id="first-rate2" name="rating" value="2" />
+    <label for="first-rate2" title="Not good">2 stars</label>
+    <input type="radio" id="first-rate3" name="rating" value="3" />
+    <label for="first-rate3" title="Average">3 stars</label>
+    <input type="radio" id="first-rate4" name="rating" value="4" />
+    <label for="first-rate4" title="Very good">4 stars</label>
+    <input type="radio" id="first-rate5" name="rating" value="5" />
+    <label for="first-rate5" title="Amazing">5 stars</label>
+  </fieldset>
+   <div class="form-footer">
+    <button type="submit">GÖNDER</button>
+    <a id="close-modal">KAPAT</a>
+   </div>
+  </form>
+
+</div>
+  
+
+</section>
+
+<script src="/js/modal.js"></script>
+
+<%- include('partials/footer') %>

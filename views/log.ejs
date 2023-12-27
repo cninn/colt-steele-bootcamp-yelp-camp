@@ -1,0 +1,30 @@
+
+<%- include('partials/header') %> 
+<%- include('partials/navbar') %> 
+ <div class="auth-container">
+    <h2 class="main-title">
+      GİRİŞ YAPIN <img class="rok" src="/assets/keyuser.png" alt="..." />
+    </h2>
+    <div class="log">
+        <form action="/users/login" method="POST">
+            <label for="username">
+                username
+            </label>
+            <input type="text" id="username" name="username" placeholder="username">
+            <label for="password">
+                password
+            </label>
+            <input type="text" id="password" name="password" placeholder="password">
+            <button type="submit" class="main-link" href="#">
+                <img class="rok" src="/assets/pass.png" alt="..." />
+                LOGIN
+              </button>
+              <a href="#" class="link" style="text-decoration: underline; color: rgba(255, 255, 255, 0.458); font-weight: normal; align-self: flex-end; padding-top: 20px; font-size: 16px; ">do not you have an account yet ?</a>
+              <a style="margin-left: auto;" class="link" href="/users/register">REGİSTER</a>
+        </form>
+  
+    </div>
+</div>
+<%- include('partials/footer') %> 
+
+  

@@ -1,0 +1,32 @@
+<% if(success && success.length) { %>
+    <section id="show"> 
+   <div class="alert-success">
+     <div><%= success %></div>
+     <button class="close">×</button>
+   </div>
+   </section>  
+   <% } %>
+   
+   <% if(error && error.length) { %>
+     <section id="show"> 
+    <div class="alert-error">
+      <div><%= error %></div>
+      <button class="close">×</button>
+    </div>
+    </section>  
+    <% } %>
+   
+   <script>
+     const successMsg = document.querySelector("#show");
+     const close = document.querySelector(".close");
+     successMsg.style.display = "flex";
+   
+     close.addEventListener("click", () => {
+       successMsg.style.display = "none";
+     });
+   
+      setTimeout(()=>{
+           successMsg.style.display='none';
+       },2000);
+   </script>
+   

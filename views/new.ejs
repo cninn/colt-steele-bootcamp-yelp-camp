@@ -1,0 +1,56 @@
+<%- include('partials/header') %> <%- include('partials/navbar') %>
+
+<div class="all-camps">
+  <h1 >
+    New Campground
+    <a style="color: white;" class="back" href="/"><i class="fa-solid fa-left-long"></i> Home</a>
+  </h1>
+</div>
+<div class="container">
+  
+  <form id="myForm" action="/campgrounds" method="POST">
+    <h2>Add a new Campground</h2>
+    <div class="form-sec-left">
+      <input
+      class="inputs"
+      type="text"
+      name="campground[title]"
+      placeholder="Enter a title"
+    />
+
+    <input
+      class="inputs"
+      type="text"
+      name="campground[location]"
+      placeholder="Enter a location"
+    />
+    <textarea
+      class="inputs"
+      name="campground[description]"
+      placeholder="Enter a description"
+    ></textarea>
+    </div>
+    <div class="form-sec-right">
+      <input
+      class="inputs"
+      type="text"
+      name="campground[price]"
+      placeholder="Enter a price"
+    />
+
+    <input
+      class="inputs"
+      type="text"
+      name="campground[url]"
+      placeholder="Enter a url"
+    />
+    <button class="btn" type="submit">Add</button>
+    </div>
+
+
+  </form>
+
+  <script src="/js/formvalid.js"></script>
+</div>
+
+<%- include('partials/footer') %>

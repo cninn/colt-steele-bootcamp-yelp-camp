@@ -1,0 +1,24 @@
+<nav id="test">
+  <button class="toggle-bar"><i class="fa-solid fa-bars"></i></button>
+  <a class="menu" href="#">MENU</a>
+
+  <div class="nav-links">
+    <a href="/"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="/campgrounds"><i class="fa-solid fa-list"></i> All Camps</a>
+  
+
+  
+
+
+  <% if(!currentUser) { %>
+    <a href="/users/login"><i class="fa-solid fa-right-to-bracket"></i> LOGGIN</a>
+    <a href="/users/register"><i class="fa-solid fa-user"></i> SIGNIN</a>
+    <% } else { %>
+    <a href="/users/logout"><i class="fa-solid fa-power-off"></i> Logout</a>
+    <a href="/campgrounds/secret"><i class="fa-regular fa-square-plus"></i> Add Campground</a>
+    <% }  %>
+
+  </div>
+
+</nav>
+<script src="/js/navToggle.js"></script>
