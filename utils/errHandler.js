@@ -10,8 +10,8 @@ const errHandles = (err, req, res, next) => {
   } else {
     let { message = "Something went wrong", statusCode = 401 } = err;
 
-    res.status(statusCode).render("error", { message, statusCode });
+    res.status(statusCode).render("error", {message,err,statusCode});
   }
-  
+
 };
 module.exports = errHandles;

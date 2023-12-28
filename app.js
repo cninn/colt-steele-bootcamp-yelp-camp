@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config();
+}
+
+
 //!İMPORT SECTİON ****************************
 const express = require("express");
 const path = require("path");
@@ -14,6 +19,8 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user");
 const userRoute = require('./routes/user');
+
+
 const app = express();
 
 connect(); //TODO : mongo connect function
@@ -25,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
 
 const sessionConfig = {
   secret: "mysecret",

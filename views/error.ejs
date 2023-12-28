@@ -8,9 +8,18 @@
       ><i class="fa-solid fa-left-long"></i> BACK</a
     >
   </h1>
-  <div class="err-img">
+  <div class="err-container">
+
+  
+  <div  class="err-img">
     <img src="https://steamuserimages-a.akamaihd.net/ugc/940574482399412994/466C45B14582C2A720A6CA10AFC1D32EB548B339/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="...">
   </div>
+
+  <div class="err-stack">
+    <span><%= err.stack %></span>
+  </div>
+</div>
+
   <script>
     function goBack() {
       window.history.back();

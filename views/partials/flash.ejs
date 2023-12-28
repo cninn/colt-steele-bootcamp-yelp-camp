@@ -1,17 +1,18 @@
 <% if(success && success.length) { %>
-    <section id="show"> 
-   <div class="alert-success">
+    <section style="display: flex; justify-content: center; align-items: center;"  id="show"> 
+   <div style="width: 600px; text-align: center; justify-content: center;" class="alert-success">
      <div><%= success %></div>
-     <button class="close">×</button>
+     <button style="margin-left: auto;" class="close">×</button>
    </div>
+   
    </section>  
    <% } %>
    
    <% if(error && error.length) { %>
-     <section id="show"> 
-    <div class="alert-error">
+     <section style="display: flex; justify-content: center; align-items: center;"  id="show"> 
+    <div style="width: 600px; text-align: center; justify-content: center;"  class="alert-error">
       <div><%= error %></div>
-      <button class="close">×</button>
+      <button style="margin-left: auto;"  class="close">×</button>
     </div>
     </section>  
     <% } %>

@@ -1,33 +1,75 @@
 <%- include('partials/header') %> <%- include('partials/navbar') %>
 
   <div class="all-camps">
-    <h1>Edit Campground <a style="color: white;" href="/campgrounds"><i class="fa-solid fa-left-long"></i> All Camps!</a></h1>
+    <h1 style="font-size: 18px;" >Edit Campground <a style="color: white;" href="/campgrounds"><i class="fa-solid fa-left-long"></i> All Camps!</a></h1>
   </div>
-  <div class="container">
-    <form id="myForm" action="/campgrounds/<%= camp._id%>?_method=PUT" method="POST">
+  
+  <div  class="container">
+   <!--  <h2>Edit Campground</h2> -->
+    <form style="width: 100%!important;" id="myForm" action="/campgrounds/<%= camp._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
 
-      <h2>Edit Campground</h2>
-      <div class="form-sec-left">
+    
+      <div style="width: 400px;"  class="form-sec-left">
 
      
       <input class="inputs" type="text" name="campground[title]" placeholder="Enter a title" value="<%= camp.title %>">
 
       <input class="inputs" type="text" name="campground[location]" placeholder="Enter a location" value="<%= camp.location %>">
 
-      <textarea class="inputs" name="campground[description]" placeholder="Enter a description"><%= camp.description %></textarea>
+      <textarea style="height: 100px;" class="inputs" name="campground[description]" placeholder="Enter a description"><%= camp.description %></textarea>
     </div>
-    <div class="form-sec-right">
 
-    
+ 
+    <div style="width: 400px;" class="form-sec-right">
 
-      <input class="inputs" type="text" name="campground[price]" placeholder="Enter a price" value="<%= camp.price %>">
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping">$Price</span>
+        <input name="campground[price]" type="text" class="form-control" placeholder="Price" aria-label="Username" aria-describedby="addon-wrapping" value="<%= camp.price %>">
+      </div>
 
-      <input class="inputs" type="text" name="campground[url]" placeholder="Enter a url" value="<%= camp.url %>">
+      <div  class="mb-3">
+        <label for="formFileMultiple" class="form-label">Choose images</label>
+        <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
+      </div>
+
+       
+ 
       <button class="btn" type="submit">Update</button>
     </div>
+
+    <div  style="overflow-x:hidden!important; width: 350px; max-height: 300px; overflow: scroll;" class="m-3">
+      <div class="row d-flex flex-column align-items-center gap-3 mb-5">
+      
+         <% camp.image.forEach(function (img ,index) { %>
+           <div id="del-img" 
+           style="background-color: rgba(255, 255, 255, 0.137); padding: 10px 40px; border-radius: 10px; " 
+           class=" align-items-center d-flex justify-content-between align-items-center">
+   
+   
+           <img class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px; " src="<%= img.thumbnail %>" alt="...">
+           <div class="form-check-inline">
+            
+             <input style="display: none;" type="checkbox" name="deleteImages[]" id="image-<%= index%>" value="<%= img.filename%>">
+             <label for="image-<%= index%>">Delete image</label>
+           </div>
+         </div>
+         <% }) %>
+       
+      </div>
+     
+   
+   
+   </div>
+   
     </form>
+
+ 
+
     <script src="/js/formvalid.js"></script>
+
   </div>
+
+ 
  
 
 

@@ -2,18 +2,17 @@
 
 <section class="all-camps">
   <h1>All Campgrounds</h1>
-  <div class="campgrounds">
+  <div style="margin-bottom: 5rem;" class="campgrounds">
     <% for(let camp of campgrounds) { %>
     <a href="/campgrounds/<%= camp._id %>">
-      <div id="camp" class="camp">
-        <% if(camp.url) { %>
-          <img src="<%= camp.url %>" alt="...">
-          <% } else { %>
-            <img
-            src="https://static.vecteezy.com/system/resources/previews/029/140/611/original/camp-logo-camp-outdoor-camping-large-sticker-camping-sticker-camp-sticker-ai-generative-free-png.png"
-            alt="..."
-          />
-            <% } %>
+     
+      <div style="height: 300px;" id="camp" class="camp">
+      
+         
+          <img height="100%" src="<%= camp.image[0].url%>" alt="...">
+          
+       
+          
    
 
         <div id="desc" class="camp-desc">
@@ -23,6 +22,7 @@
         </div>
       </div>
     </a>
+   
     <% } %>
   </div>
 </section>

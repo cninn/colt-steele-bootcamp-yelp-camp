@@ -283,7 +283,7 @@ nav h4{
 
 /* TODO ALL CAMPS CSS ********************************/
 .campgrounds {
-    background-color:#000814;
+/*     background-color:#000814; */
     width: 100%;   
     padding: 20px;
     display: flex;
@@ -298,6 +298,7 @@ nav h4{
 
 
 .detail-camp {
+  
     width: 100%;
     height: calc(100vh - 230px);
     padding: 20px;
@@ -308,31 +309,11 @@ nav h4{
     justify-content: center;
   
    
-    background-color: #000814;
+   /*  background-color: #000814; */
   
 }
 
-.camp{
-    width: 300px;
-    height:max-content;
- 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-top:4px solid #ebc62f;
-    border-radius: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-   color: #fff;
-   
-    cursor: pointer;
-    padding: 10px;
-    margin-right: 1.5rem;
-    gap: 10px;
-    position: relative;
-    box-shadow: rgba(0, 0, 0, 0.9) 0px 14px 28px, rgba(0, 0, 0, 0.9) 0px 10px 10px;
-   
-}
+
 .more-icon{
     position: absolute;
     font-size: 24px;
@@ -346,29 +327,35 @@ nav h4{
     cursor: pointer;
 }
 
-.camp img{
-    width: 100%;
-    height: 200px;
-   border-radius: 5px;
+.camp{
    
-    
-    
+    border-top:4px solid #ebc62f;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    padding: 10px;
+    margin-right: 1.5rem;
+    gap: 10px; 
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 14px 28px, rgba(0, 0, 0, 0.9) 0px 10px 10px;
+    position: relative;
+}
+
+.camp img{
+    width: 300px;
     object-fit: cover;
 }
 .camp-desc{
-    position: absolute;
-    bottom:0;
-    width: 95%;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+   
     background: rgb(255,255,255);
     background: linear-gradient(90deg, rgba(255,255,255,1) -1%, rgba(235,198,47,0.5) 0%, rgba(0,8,20,0.5688725490196079) 0%, rgba(255,255,255,0.383158263305322) 100%);
     border-radius: 5px;
     padding: 5px 10px;
     color: #000814;
     transition: all 0.5s;
+    position: absolute;
+    bottom: 0;
+    width: 97%;
 }
 .visible{
     visibility:visible;
@@ -401,6 +388,8 @@ nav h4{
 }
 @media(max-width:900px){
     .detail-camp{
+        
+        
       height: auto;
       
     }
@@ -411,23 +400,32 @@ nav h4{
       padding: 10px;
     }
     .detail-camp{
-        align-items: flex-start;
+       
         flex-direction: column;
-        justify-content: flex-start;
         align-items: center;
+        justify-content: center;
+      
       padding: 10px;
       
     }
     .camp{
-        flex-direction: column-reverse;
+      
         margin-right: 0;
-        width: 90vw!important;
-        height:max-content;
+        width: 100vw!important;
+        height: 400px!important;
+        
     }
   .camp img{
+    
     width: 100%!important;
-    height:500px;
+    height:400px!important;
 
+  }
+  .detail-two{
+    width: 100%!important;
+  }
+  .comments{
+    margin-bottom: 2rem;
   }
 }
 
@@ -463,16 +461,17 @@ nav h4{
     margin-bottom: 4rem;
 }
 #myForm{
-    width: 800px;
+    width: 1000px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+  
     background-color: #000814;
     border-radius: 20px;
     padding: 50px;
 }
 #myForm h2{
-    font-size: 34px;
+    font-size: 20px;
     margin-right: 1rem;
     color: white;
 }
@@ -523,7 +522,7 @@ nav h4{
 /* TODO: Footer  ****************************************************/
 footer{
     position: fixed;
-    width: 100%;
+    width: 100vw;
     bottom: 0;
   color:darkorange;
   font-weight: bold;
@@ -534,7 +533,7 @@ footer{
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    background-image: linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% );
+ /*    background-image: linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% ); */
 }
 
 
@@ -552,10 +551,27 @@ footer{
    
 }
 
+.err-container{
+    max-width: 100%;
+    display: flex;
+    color: white;
+ 
+   
+}
+
+.err-stack{
+    padding: 30px;
+    background-color: rgb(100, 34, 34);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
 
 .err-img img{
-    width: 100%;
-    height: calc(100vh - 80px);
+    
+    width: 400px;
+    height: calc(100vh - 300px);
 }
 
 @media(max-width:900px){
@@ -669,6 +685,7 @@ footer{
         align-items: center;
         text-align: center;
         width: 100%;
+        background:none;
       
     }
   
@@ -870,6 +887,12 @@ footer{
         margin-left: 0;
         margin-top: 0;
     }
+    .comment{
+        background: none;
+        align-items: flex-start;
+        
+        box-shadow: rgba(0, 0, 0, 0.9) 0px 14px 28px, rgba(0, 0, 0, 0.9) 0px 10px 10px;
+    }
 }
 
 .not-rev{
@@ -882,7 +905,7 @@ footer{
     background-color: #000814e9;
     color: white;
     position: absolute;
-    top:0;
+    top:40%;
     text-align: center;
   
     z-index: 1500;
@@ -904,7 +927,7 @@ footer{
     background-color: #990202e9;
     color: white;
     position: absolute;
-    top:0;
+    top:40%;
   
   
     z-index: 1500;
@@ -931,6 +954,15 @@ footer{
         height: 10%;
         font-size: 16px;
     }
+    .detail-two{
+        margin-bottom: 3rem;
+    }
+    .descs{
+        justify-content: flex-start;
+        
+        min-height:220px!important;
+    }
+   
 }
 .close{
     border: none;
@@ -1150,4 +1182,40 @@ footer{
     cursor:pointer;
 
   }
+ @media(max-widht:900px){
+    #del-img{
+        width: 100%!important;
+    }
+    
+  
+ }
+ input[type="checkbox"] + label:hover {
+    cursor: pointer;
+    
+    background-color: #000814;
+    color: white;
+    transition: all 0.4s;
+   
+}
+
+ input:checked + label {
+    background-color: red;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+}
+
+input[type="checkbox"] + label {
+   
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+}
+
+@media(max-widht:900px){
  
+    .descs{
+        background:0!important;
+        background-color: transparent!important;
+    }
+ }

@@ -8,8 +8,8 @@
 </div>
 <div class="container">
   
-  <form id="myForm" action="/campgrounds" method="POST">
-    <h2>Add a new Campground</h2>
+  <form id="myForm" action="/campgrounds" method="POST" enctype="multipart/form-data">
+   
     <div class="form-sec-left">
       <input
       class="inputs"
@@ -31,19 +31,17 @@
     ></textarea>
     </div>
     <div class="form-sec-right">
-      <input
-      class="inputs"
-      type="text"
-      name="campground[price]"
-      placeholder="Enter a price"
-    />
 
-    <input
-      class="inputs"
-      type="text"
-      name="campground[url]"
-      placeholder="Enter a url"
-    />
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="addon-wrapping">$Price</span>
+      <input name="campground[price]" type="text" class="form-control" placeholder="Price" aria-label="Username" aria-describedby="addon-wrapping">
+    </div>
+
+    <div  class="mb-3">
+      <label for="formFileMultiple" class="form-label">Choose images</label>
+      <input class="form-control" type="file" id="formFileMultiple" multiple name="image">
+    </div>
+
     <button class="btn" type="submit">Add</button>
     </div>
 

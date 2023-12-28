@@ -7,8 +7,9 @@ const myvalidator =(req,res,next)=>{
           price:joi.number().required().min(0),
           description:joi.string().required(),
           location:joi.string().required(),
-          url:joi.string().required()
-        }).required()
+         
+        }).required(),
+        deleteImages:joi.array()
       });
       const {error} = campgroundSchema.validate(req.body);
      

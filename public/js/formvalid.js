@@ -6,7 +6,8 @@ form.addEventListener("submit", (e) => {
   validateForm();
 
   function validateForm() {
-    let inputs = form.querySelectorAll("input, textarea");
+    let inputs = form.querySelectorAll("input:not([type='file']), textarea");
+
 
     inputs.forEach(function (input) {
       if (input.value.trim() === "") {
