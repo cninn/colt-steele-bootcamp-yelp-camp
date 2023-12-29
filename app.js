@@ -19,7 +19,8 @@ const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user");
 const userRoute = require('./routes/user');
-
+const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 const app = express();
 
@@ -32,20 +33,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(mongoSanitize({
+  replaceWith:'_'
+}));//!SECURE
 
 
 const sessionConfig = {
+  name:'cninnmakes',
   secret: "mysecret",
   resave: false,
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
+ /*    secure:true, */
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
 };
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy : false }));
 
 //!PASSPORT AUTH **********************************
 
@@ -55,12 +62,17 @@ passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+
 app.use((req, res, next) => {
+ 
   res.locals.currentUser = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
 });
+
+
 //!ROUTES! *******************************************************
 
 
