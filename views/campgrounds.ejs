@@ -45,6 +45,21 @@ camps.forEach((camp) => {
     desc.style.display = 'none';
   });
 });
+
+camps.forEach((camp) => {
+  const desc = camp.querySelector('#desc');
+  desc.style.display = 'none';
+
+  camp.addEventListener('touchstart', () => {
+    desc.classList.add('visible');
+    desc.style.display = 'block';
+  });
+
+  camp.addEventListener('touchend', () => {
+    desc.classList.remove('visible');
+    desc.style.display = 'none';
+  });
+});
 </script>
 
 <%- include('partials/footer') %>

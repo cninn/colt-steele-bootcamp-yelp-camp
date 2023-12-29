@@ -41,7 +41,7 @@ app.use(mongoSanitize({
 }));//!SECURE
 
 const DB_URL= process.env.MONGO_CONNECT;
-const SECRET = process.env.MONGO_STORE_SECRET
+const SECRET = process.env.MONGO_STORE_SECRET || "mysecret"
 
 
 
@@ -49,7 +49,7 @@ const SECRET = process.env.MONGO_STORE_SECRET
 
 const sessionConfig = {
   name: 'cninnmakes',
-  secret: "mysecret",
+  secret: SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -61,8 +61,10 @@ const sessionConfig = {
 
 app.use(session({
   ...sessionConfig,
-  store: new MongoStore({ mongoUrl: "mongodb://127.0.0.1:27017/yelp-camp" }),
+  store: new MongoStore({ mongoUrl:DB_URL || "mongodb://127.0.0.1:27017/yelp-camp" }),
 }));
+
+
 app.use(flash());
 app.use(helmet({ contentSecurityPolicy : false }));
 
@@ -90,7 +92,8 @@ app.use((req, res, next) => {
 
 
 app.get("/campgrounds/secret", async (req, res) => {
-  res.render("admin");
+  const user = req.user;
+  res.render("admin",{user});
 });
 app.get("/campgrounds/secret/admin?", async (req, res) => {
   const { password } = req.query;
@@ -113,7 +116,7 @@ app.all("*", (req, res, next) => {
 
 app.use(errHandles);
 
-const port = 3000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Server ayaklandı : http://localhost:${port}`);
 });

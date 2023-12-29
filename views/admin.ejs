@@ -1,7 +1,7 @@
 <%- include('partials/header') %> <%- include('partials/navbar') %>
 <div class="container-panel">
 
-    <h1 style="color: whitesmoke; margin-bottom: 1rem;">HOŞGELDİNİZ CNINNMAKES!</h1>
+    <h1 style="color: whitesmoke; margin-bottom: 1rem;">HOŞGELDİNİZ <%= user.username.toUpperCase() %> </h1>
 <div class="admin-panel">
 
   
@@ -10,9 +10,9 @@
         <a class="not-link" href="/campgrounds/new"><i class="fa-solid fa-plus"></i>Add a new campground</a>
      
     </div>
-    <div class="add">
+<!--     <div class="add">
         <a href="/campgrounds/secret/admin?password=cninnmakes" >VERİLERİ SIFIRLA</a>
-    </div>
+    </div> -->
 </div>
 </div>
    
