@@ -1,5 +1,6 @@
 const mongoose =require('mongoose');
 
+const DB_URL= process.env.MONGO_CONNECT;
 
 const connect = ()=>{
     try {

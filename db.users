@@ -1,4 +1,40 @@
-db.users.find({username:req.body.username});
-db.users.find({username:{"$gt":""}})
+ÖNEMLİ: connect-mongo — Güncellemeleri İşleme
+YelpCamp uygulama projesi için yaklaşan 'Oturum Mağazamız İçin Mongo'yu Kullanmak' video dersine devam etmeden önce lütfen orada kullandığımız connect-mongo modülünün o dersin kaydedilmesinden bu yana güncellendiğini unutmayın. Sonuç olarak, app.js dosyasındaki bazı kodların ayarlanması gerekiyor, bu nedenle bir sonraki videoyu izlerken bu ders notunu el altında bulundurduğunuzdan emin olun (o zaman mantıklı olacaktır!)
 
-{"$gt":""}
+Temel olarak, önümüzdeki dersi izlerken kodlama yapıyorsanız, söz konusu connect-mongo modülünü uygulamanızda uygularken aşağıdaki hata mesajını görebilirsiniz:TypeError: Class constructor MongoStore cannot be invoked without 'new'
+
+Bunu düzeltmek için işte iki seçenek:
+1. Colt'un derste kullandığı sürümün aynısını (v3.2.0) yükleyin; bu, video ders kodunu herhangi bir değişiklik yapmadan takip etmenize olanak tanır
+Connect-mongo'nun eski sürümünü yüklemek ve kullanmak için, terminalde, ana proje klasöründe, özellikle connect-mongo 3.2.0 sürümünü yüklemek için npm install komutunu bu sözdizimiyle çalıştırabilirsiniz:
+
+npm install connect-mongo@3.2.0
+
+2. Connect-mongo'nun en son sürümünü yükleyin ve ardından app.js kodunu uygun şekilde güncelleyin.
+Öncelikle connect-mongo modülünün en son sürümünü şu npm install komutuyla yükleyin:
+
+npm install connect-mongo@latest
+
+Şu anda en son connect-mongo sürümü için güncellenmiş belgelere dayanarak, app.js kodunda (eski connect-mongo v3.2.0 yapılandırma satırları yerine) aşağıdaki değişiklikleri yapmamız gerektiğini buldum :
+
+- Öncelikle MongoStore'a farklı şekilde ihtiyacımız var:
+
+const oturum = require ( 'express-session' ); 
+const MongoStore = require ( 'connect-mongo' );   
+* Kodunuzda 'const session' bildirim satırını iki kez tekrarlamadığınızdan emin olun ; Colt'un kodunu uyguluyorsanız bu satırın zaten mevcut olması gerekir .
+
+* Güncellenmiş connect-mongo sürümünü kullanıyorsanız Colt'un kodunda bulunan eski 'const MongoDBStore' satırını kaldırdığınızdan emin olun - connect-mongo'nun en yeni sürümleriyle artık kullanmamanız gereken , vurgulanan satırı bulmak için bu bağlantıyı kontrol edin .
+
+- Daha sonra, en son connect-mongo sürümüyle, mağazayı oluşturmak için MongoStore.create() yöntemini kullanmalıyız (bu yeni sürümde mongoUrl özelliğini ve crypto / secret özelliklerini belirtmek gibi bazı farklılıklar vardır):
+
+const mağaza = MongoStore . yaratmak ({ 
+    mongoUrl : dbUrl ,
+    dokunmatikSonra : 24 * 60 * 60 ,     
+    kripto : { 
+        secret : 'bu daha iyi bir sır olmalı!' 
+    }
+});
+Bu değişiklikleri yaptıktan sonra, en son connect-mongo sürümünde de her şeyin düzgün çalışması gerekir! Bunu uyguladıktan sonra uygulama sayfalarını ziyaret ederken herhangi bir hata görürseniz, tarayıcıdaki localhost etki alanı oturum verilerinizi/çerezlerinizi temizlemeyi deneyin (bunları yalnızca localhost için temizleyin , diğer web siteleriniz için silmenize gerek yoktur) veya deneyin Bu oturum yapılandırmasını değiştirdikten sonra uygulamanıza özel/gizli bir tarayıcı penceresinden erişmek için.
+
+Bu konuda daha fazla yardıma ihtiyacınız olursa lütfen kursun Soru-Cevap panolarıyla iletişime geçin.
+
+Zarko — Öğretim Asistanı
